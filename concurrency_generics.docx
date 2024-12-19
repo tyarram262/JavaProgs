@@ -1,0 +1,25 @@
+Concurrency
+a) T3, T4, T1
+b) Since there are only addition operations which all have the same priority in order of operations, the only possible value after all threads finish execution is 31.
+But also if the threads happen to have any concurrent access and accidentally erase the updates done by another thread because of a race condition then the value could hold many different numbers
+If one update is lost the outcome could look like 30, or 21, or 16 or 26 depending on which thread is overwritten.
+c) The scope of this synchronization block unfortunately doesnt effectictively prevent race conditions since the code shown synchronizes on the instance of the object running the thread so
+therefore instead of synchronizing all threads it indivdually synchronizes each insteance of a thread and doesn't provide an effective restriction of the race condition and still allows for concurrent access to X
+instead what we can do is creating a lock object that is shared and prevents concurrent access to x:
+    private final Object lock = new Object();
+
+    public void incrementX(int value) {
+        synchronized (lock) {
+            X = X + value;
+        }
+    }
+d) synchronization is necessary for these functions because these methods are designed for working with an object's intrinsic lock  which coordinates access to the object's synchronized methods/blocks
+the wait method causes the current thread to wait until another thread invoke notify on the same object so the thread releases the lock and enters the waiting state
+notify wakes up a singel thread taht is waiting on the object's monitor and the thread can then proceed after reaquiring the intrinsic lock.
+
+Generics
+a) You can pass any class that implements the List interface with a String type parameter. Three classes that can be passed is ArrayList, LinkedList, and Vector because al of these are all valid implementations of the List interface.
+Three methods tha tcan be used on the argument are .add, .get, .size beacuse these are all methods defined in the List interface.
+b) D and F because it directly implements Runnable, E/G because they inherit Runnable from D/F,
+c) This would also be D,E,F, or G for the same reasons as provided above
+d) Named tpye parameters are used to define generic classes, interfaces, and methods. The provide a way to specify the exact type that a generic class or method will operate on. Wildcards build on this by adressing the limitation of named type parameters to allow flexibility and generic code. They enable you to write methods taht can operate on a wider range of types without needing to specify the exact type.

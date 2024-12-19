@@ -1,0 +1,13 @@
+a)
+Because Hello is of the generic type E, the methods we could call would basically depend on the type passed in by the instance. However, since all classes extend from class object, we could call methods that belong to class Object:
+toString(), equals(), hashCode() would all be valid since they are all methods of the object class which is extended by all others.
+
+You can pass any class that implements the List interface with a String type parameter. Three classes that can be passed is ArrayList, LinkedList, and Vector because al of these are all valid implementations of the List interface.
+Three methods tha tcan be used on the argument are .add, .get, .size beacuse these are all methods defined in the List interface.
+
+
+b)Three classes that can be used to instantiate instances of World would be long, float, and short because these types are all classes that inherit the Number class which is being inherited in the example.
+c)1)Public class C and E would both be valid return types for this method because they both implement the Comparable<String> interface and public class F inherits the method from Class c so therefore it also would be valid. The rest would not.
+2)The classes described previously (C,E, and F) also be valid argument types since the argument is of generic type T which is declared to inherit the same Comparable<String> and therefore any of the methods that inherit this method would also be valid arguments for the method.
+3) The limitations of type parameters lies in the fact that they are not flexible with subtypes and so in the case of expecting a certain type in a List (eg. List<Number>) you'd be unable to use an integer or double to it though they are subclasses
+whereas you can just use a ? and solve the issue easily with wildcards. You also make your type signatures a lot more difficult to read with type signatures since you may need multiple of these.
